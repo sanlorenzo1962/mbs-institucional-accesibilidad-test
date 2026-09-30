@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="MBS – Multilingüe Braille System. Tecnología educativa accesible para aprender, practicar y enseñar Braille.">
+<title>MBS – Multilingüe Braille System</title>
+<style>
+:root{
+  --ink:#14202b;--navy:#0c2d4d;--blue:#14558a;--soft:#edf5fa;
+  --paper:#fff;--surface:#fff;--line:#66737e;--focus:#ffbf00;--max:1180px;
+  --link:#07539b;--footer:#0c2d4d;--muted:#394957
+}
+html[data-theme="dark"]{
+  --ink:#f2f6f8;--navy:#ffffff;--blue:#8cc8ff;--soft:#172532;
+  --paper:#0f171f;--surface:#16212b;--line:#9eabb5;--focus:#ffd54a;
+  --link:#9bd0ff;--footer:#081018;--muted:#c7d1d9
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif;font-size:1.125rem;line-height:1.65}
+html[data-text-size="small"] body{font-size:1rem}
+html[data-text-size="large"] body{font-size:1.3rem}
+html[data-text-size="xlarge"] body{font-size:1.5rem}
+img{max-width:100%;height:auto}
+a{color:var(--link);text-underline-offset:.18em}
+a:hover{text-decoration-thickness:3px}
+a:focus-visible,button:focus-visible{outline:4px solid var(--focus);outline-offset:4px}
+.skip{position:absolute;left:1rem;top:-6rem;z-index:99;background:#000;color:#fff;padding:.8rem 1rem;font-weight:700}
+.skip:focus{top:1rem}
+.wrap{width:min(var(--max),calc(100% - 2rem));margin:auto}
+header{border-bottom:2px solid #aab4bd;background:var(--surface)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;padding:1rem 0}
+.brand{font-size:1.35rem;font-weight:800;color:var(--navy);text-decoration:none}
+nav ul{display:flex;gap:.45rem 1.2rem;flex-wrap:wrap;list-style:none;padding:0;margin:0}
+nav a{font-weight:700}
+main:focus{outline:none}
+.hero{background:var(--soft);padding:4.5rem 0;border-bottom:1px solid #c6d3dd}
+.hero-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:3rem;align-items:center}
+.kicker{font-weight:800;color:var(--blue);margin:0 0 .25rem}
+h1,h2,h3{color:var(--navy);line-height:1.18}
+h1{font-size:clamp(2.8rem,7vw,5rem);margin:.1rem 0 .8rem}
+h2{font-size:clamp(1.8rem,4vw,2.65rem);margin-top:0}
+h3{font-size:1.3rem}
+.lead{font-size:1.35rem}
+.actions{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.7rem}
+.button{display:inline-block;padding:.8rem 1.15rem;border:2px solid var(--navy);border-radius:.35rem;font-weight:800;text-decoration:none}
+.primary{background:var(--navy);color:#fff}.secondary{background:var(--surface);color:var(--navy)}
+[data-theme="dark"] .primary{background:#ffffff;color:#0f171f;border-color:#ffffff}
+.hero figure{margin:0}
+.hero img{display:block;border:3px solid var(--navy);border-radius:.6rem;background:var(--surface)}
+figcaption{font-size:.9rem;color:var(--muted);margin-top:.5rem}
+section{padding:4rem 0}
+section+section{border-top:1px solid var(--line)}
+.narrow{max-width:850px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.card{border:2px solid var(--line);border-radius:.45rem;padding:1.3rem}
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem;margin-top:2rem}
+.flow div{border:2px solid var(--blue);padding:1rem;text-align:center;font-weight:700}
+.feature{background:color-mix(in srgb,var(--paper) 94%,var(--blue) 6%)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center}
+.braille{display:grid;grid-template-columns:repeat(2,3.2rem);gap:.8rem;justify-content:center;border:3px solid var(--navy);padding:1.5rem;border-radius:1rem;width:max-content;margin:auto}
+.dot{width:3.2rem;height:3.2rem;border-radius:50%;background:var(--navy)}
+.timeline{border-left:4px solid var(--blue);padding-left:1.4rem}
+.timeline article{margin:0 0 1.8rem}
+.timeline h3{margin-bottom:.25rem}
+.notice{border-left:6px solid var(--blue);background:var(--soft);padding:1rem 1.2rem}
+footer{background:var(--footer);color:#fff;padding:2.5rem 0}
+footer p{margin:.3rem 0}
+@media(max-width:820px){.hero-grid,.cards,.flow,.two{grid-template-columns:1fr}.hero{padding:3rem 0}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+@media(forced-colors:active){.button,.card,.flow div,.braille,.hero img{border:2px solid CanvasText}}
+
+.access-tools{display:flex;align-items:center;gap:.55rem;flex-wrap:wrap;padding:.75rem 0;border-top:1px solid var(--line)}
+.access-tools strong{font-size:.95em}
+.access-tools button{font:inherit;font-weight:700;min-width:2.7rem;min-height:2.7rem;padding:.45rem .7rem;border:2px solid var(--navy);border-radius:.35rem;background:var(--surface);color:var(--ink);cursor:pointer}
+.access-tools button:hover{outline:2px solid var(--blue);outline-offset:1px}
+.access-tools button[aria-pressed="true"]{background:var(--navy);color:var(--paper)}
+.access-status{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:820px){.access-tools{align-items:stretch}.access-tools strong{width:100%}}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido principal</a>
+
+<header>
+<div class="wrap top">
+<a class="brand" href="#inicio" aria-label="MBS, ir al inicio">MBS · Multilingüe Braille System</a>
+<nav aria-label="Navegación principal">
+<ul>
+<li><a href="#que-es">Qué es MBS</a></li>
+<li><a href="#funciona">Cómo funciona</a></li>
+<li><a href="#proyecto">El proyecto</a></li>
+<li><a href="#demo">Demo</a></li>
+<li><a href="#colaborar">Colaborar</a></li>
+<li><a href="#accesibilidad">Accesibilidad</a></li>
+</ul>
+</nav>
+</div>
+<div class="wrap access-tools" aria-label="Preferencias de accesibilidad">
+<strong>Accesibilidad:</strong>
+<button type="button" id="textDecrease" aria-label="Reducir tamaño del texto" title="Reducir texto">A−</button>
+<button type="button" id="textReset" aria-label="Restablecer tamaño del texto" title="Tamaño normal">A</button>
+<button type="button" id="textIncrease" aria-label="Aumentar tamaño del texto" title="Aumentar texto">A+</button>
+<button type="button" id="themeToggle" aria-pressed="false" aria-label="Activar tema oscuro">Tema oscuro</button>
+<button type="button" id="prefsReset" aria-label="Restablecer preferencias de accesibilidad">Restablecer</button>
+<span id="accessStatus" class="access-status" role="status" aria-live="polite"></span>
+</div>
+</header>
+
+<main id="contenido" tabindex="-1">
+<section class="hero" id="inicio">
+<div class="wrap hero-grid">
+<div>
+<p class="kicker">Tecnología educativa · Braille · Accesibilidad</p>
+<h1>MBS</h1>
+<p class="lead"><strong>Multilingüe Braille System</strong></p>
+<p>Un sistema educativo para aprender y practicar Braille mediante un teclado físico y una WebApp accesible, con funcionamiento local y autónomo.</p>
+<div class="actions">
+<a class="button primary" href="#que-es">Conocer MBS</a>
+<a class="button secondary" href="https://sanlorenzo1962.github.io/mbs-demo-web-udemm-braille/" target="_blank" rel="noopener noreferrer">Probar la demo</a>
+</div>
+</div>
+<figure>
+<img src="assets/mbs-prototipo-presentacion.png" alt="Presentación del prototipo MBS: gabinete negro de formato cilíndrico y conjunto frontal de teclas táctiles blancas.">
+<figcaption>Prototipo MBS. Imagen de presentación elaborada a partir de fotografías del equipo real.</figcaption>
+</figure>
+</div>
+</section>
+
+<section id="que-es">
+<div class="wrap narrow">
+<h2>¿Qué es MBS?</h2>
+<p>MBS integra un teclado basado en los seis puntos de la celda Braille, un microcontrolador ESP32-S3 y una WebApp educativa. El estudiante ingresa combinaciones Braille y recibe realimentación inmediata mediante texto, recursos visuales y síntesis de voz.</p>
+<p>El objetivo no es solamente escribir caracteres. El sistema está concebido como una herramienta para acompañar progresivamente el <strong>aprendizaje, la práctica y la evaluación</strong> del Braille.</p>
+</div>
+</section>
+
+<section id="funciona">
+<div class="wrap">
+<h2>¿Cómo funciona?</h2>
+<p>El diseño mantiene un flujo simple y comprensible:</p>
+<div class="flow" aria-label="Flujo conceptual de MBS">
+<div>1. Estudiante</div><div>2. Teclado Braille</div><div>3. ESP32-S3</div><div>4. WebApp y realimentación</div>
+</div>
+<p>El propio MBS puede crear una red Wi-Fi local. Un teléfono, tablet o computadora se conecta a ella y accede a la WebApp mediante el navegador. Las funciones esenciales no requieren Internet.</p>
+</div>
+</section>
+
+<section class="feature">
+<div class="wrap two">
+<div>
+<h2>Seis puntos, una interfaz conocida</h2>
+<p>La disposición física toma como referencia la celda Braille de seis puntos y la lógica de escritura tipo Perkins. El diseño busca que la tecnología acompañe el aprendizaje sin convertirse en una barrera adicional.</p>
+<p>La realimentación puede adaptarse a actividades de aprendizaje, práctica y evaluación.</p>
+</div>
+<div class="braille" role="img" aria-label="Esquema de una celda Braille de seis puntos, tres filas y dos columnas">
+<span class="dot" aria-hidden="true"></span><span class="dot" aria-hidden="true"></span>
+<span class="dot" aria-hidden="true"></span><span class="dot" aria-hidden="true"></span>
+<span class="dot" aria-hidden="true"></span><span class="dot" aria-hidden="true"></span>
+</div>
+</div>
+</section>
+
+<section aria-labelledby="principios">
+<div class="wrap">
+<h2 id="principios">Principios de diseño</h2>
+<div class="cards">
+<article class="card"><h3>Autonomía</h3><p>Las funciones esenciales se diseñan para operar localmente y sin depender de servicios externos.</p></article>
+<article class="card"><h3>Accesibilidad</h3><p>Se priorizan navegación por teclado, compatibilidad con tecnologías de asistencia, claridad y baja carga cognitiva.</p></article>
+<article class="card"><h3>Valor educativo</h3><p>Cada función debe aportar al aprendizaje y preservar la estabilidad y sencillez del sistema.</p></article>
+</div>
+</div>
+</section>
+
+<section id="proyecto">
+<div class="wrap narrow">
+<h2>Del prototipo a una herramienta educativa</h2>
+<p><strong>MBS es un prototipo funcional en fase de validación.</strong> Su evolución es incremental: primero se estabilizan las funciones esenciales y luego se incorporan nuevas capacidades.</p>
+<div class="timeline">
+<article><h3>Teclado físico</h3><p>Ingreso mediante combinaciones de los seis puntos Braille y teclas de control.</p></article>
+<article><h3>Interfaz educativa</h3><p>WebApp local con realimentación y síntesis de voz.</p></article>
+<article><h3>Autonomía local</h3><p>Red Wi-Fi propia para utilizar el sistema sin conexión a Internet.</p></article>
+<article><h3>Evolución multilingüe</h3><p>Desarrollo progresivo de soporte para distintos idiomas y contenidos educativos.</p></article>
+<article><h3>Validación colaborativa</h3><p>Próxima etapa orientada a obtener experiencias de uso en contextos educativos reales.</p></article>
+</div>
+</div>
+</section>
+
+<section id="demo">
+<div class="wrap narrow">
+<h2>Probar MBS</h2>
+<p>La demo pública permite experimentar desde un navegador con las actividades educativas de MBS, sin disponer del teclado físico. Incluye cuatro idiomas, lecciones y realimentación visual y hablada.</p>
+<div class="notice"><strong>Demo disponible.</strong> Esta versión utiliza un teclado virtual y es una demostración de las funciones educativas; no requiere el dispositivo físico. <a href="https://sanlorenzo1962.github.io/mbs-demo-web-udemm-braille/" target="_blank" rel="noopener noreferrer">Abrir la demo de MBS</a>.</div>
+</div>
+</section>
+
+<section id="colaborar">
+<div class="wrap narrow">
+<h2>Una construcción colaborativa</h2>
+<p>Docentes, estudiantes, personas usuarias de Braille e instituciones pueden aportar experiencias y observaciones para mejorar MBS. La validación en contextos reales es una parte esencial de la evolución del proyecto.</p>
+<p>Este espacio irá incorporando información sobre la red de colaboradores, experiencias de validación y formas de participación.</p>
+</div>
+</section>
+
+<section id="accesibilidad">
+<div class="wrap narrow">
+<h2>Accesibilidad del sitio</h2>
+<p>Este sitio se desarrolla procurando que sus contenidos y funciones puedan utilizarse mediante teclado y tecnologías de asistencia. Se priorizan estructura semántica, foco visible, contraste suficiente, texto legible y navegación predecible.</p>
+<p>No declaramos todavía una conformidad formal con WCAG 2.2 AA. El sitio será revisado progresivamente y agradecemos que se comuniquen las barreras de accesibilidad que puedan encontrarse.</p>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="wrap">
+<p><strong>MBS – Multilingüe Braille System</strong></p>
+<p>Proyecto educativo de tecnología y accesibilidad.</p>
+<p>© 2026 MBS · Sitio en construcción.</p>
+</div>
+</footer>
+
+<script>
+(function(){
+  const root = document.documentElement;
+  const sizes = ['small','normal','large','xlarge'];
+  const KEY_SIZE = 'mbs-text-size';
+  const KEY_THEME = 'mbs-theme';
+  const status = document.getElementById('accessStatus');
+  const dec = document.getElementById('textDecrease');
+  const reset = document.getElementById('textReset');
+  const inc = document.getElementById('textIncrease');
+  const theme = document.getElementById('themeToggle');
+  const prefsReset = document.getElementById('prefsReset');
+
+  function announce(message){
+    status.textContent = '';
+    window.setTimeout(function(){ status.textContent = message; }, 30);
+  }
+
+  function applySize(value, persist){
+    if(!sizes.includes(value)) value = 'normal';
+    if(value === 'normal') root.removeAttribute('data-text-size');
+    else root.setAttribute('data-text-size', value);
+    if(persist) localStorage.setItem(KEY_SIZE, value);
+    const labels = {small:'reducido',normal:'normal',large:'grande',xlarge:'muy grande'};
+    announce('Tamaño de texto ' + labels[value]);
+  }
+
+  function currentSize(){
+    return root.getAttribute('data-text-size') || 'normal';
+  }
+
+  function stepSize(delta){
+    const i = sizes.indexOf(currentSize());
+    const next = Math.max(0, Math.min(sizes.length - 1, i + delta));
+    applySize(sizes[next], true);
+  }
+
+  function preferredTheme(){
+    const saved = localStorage.getItem(KEY_THEME);
+    if(saved === 'dark' || saved === 'light') return saved;
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+
+  function applyTheme(value, persist){
+    const dark = value === 'dark';
+    if(dark) root.setAttribute('data-theme','dark');
+    else root.removeAttribute('data-theme');
+    theme.setAttribute('aria-pressed', String(dark));
+    theme.setAttribute('aria-label', dark ? 'Activar tema claro' : 'Activar tema oscuro');
+    theme.textContent = dark ? 'Tema claro' : 'Tema oscuro';
+    if(persist) localStorage.setItem(KEY_THEME, dark ? 'dark' : 'light');
+    announce(dark ? 'Tema oscuro activado' : 'Tema claro activado');
+  }
+
+  dec.addEventListener('click', function(){ stepSize(-1); });
+  reset.addEventListener('click', function(){ applySize('normal', true); });
+  inc.addEventListener('click', function(){ stepSize(1); });
+  theme.addEventListener('click', function(){
+    applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark', true);
+  });
+  prefsReset.addEventListener('click', function(){
+    localStorage.removeItem(KEY_SIZE);
+    localStorage.removeItem(KEY_THEME);
+    applySize('normal', false);
+    applyTheme(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light', false);
+    announce('Preferencias de accesibilidad restablecidas');
+  });
+
+  applySize(localStorage.getItem(KEY_SIZE) || 'normal', false);
+  applyTheme(preferredTheme(), false);
+})();
+</script>
+
+</body>
+</html>
